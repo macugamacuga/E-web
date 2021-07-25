@@ -1,0 +1,57 @@
+
+<div >
+  <div class="searchcontainer" style="padding-bottom: 30px; ">
+ 
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start search">
+    </div>
+    
+   
+  
+  </div>
+  
+  </div>
+
+<div class="grid-container" >
+ 
+ 
+  <div class="row"*ngIf="products.length">
+  
+    <div class="col-sm-3" *ngFor="let product of products | filter:searchText">
+    <div class="product-grid6">
+        <div class="product-image6" >
+            <a (click)="onclick(product.id)"  [routerLink]="['/Details',product.id]" routerLinkActive="active" >
+                <img class="pic-1" src="http://localhost/webapp/OnlineShop/OnlineShopWeb/src/assets/{{product.mainimageurl}}">
+            </a>
+        </div>
+        <div class="product-content">
+            <h3 class="title"><a [routerLink]="['/Details',product.id]" routerLinkActive="active">{{product.Name}}</a></h3>
+            <div class="price">ksh{{product.Price}}
+                <span>$14.00</span>
+              <br>
+                <a href="#" class="btn btn-info btn sm">
+                  <span class="bi bi-cart"></span> Add to Cart
+                </a>
+  
+
+                
+                  <!-- <a  routerLink="/Details" routerLinkActive="active" class="btn btn-danger btn sm" style="margin-left: 10px;"
+                  (click)="onDelete(product)"
+                  >
+                     Delete
+                  </a> -->
+                
+            </div>
+           
+  
+        </div>
+        
+    </div>
+    
+   </div>
+
+   </div>
+
+  
+  </div> 
+ 

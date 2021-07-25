@@ -1,0 +1,42 @@
+<section id="topbar" class="d-flex align-items-center">
+  <div class="container d-flex justify-content-center justify-content-md-between">
+    <div class="contact-info d-flex align-items-center">
+      <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:Email@Email.com">Email@Email.com</a></i>
+      <i class="bi bi-phone d-flex align-items-center ms-4"><span>+254 725718423</span></i>
+     
+    </div>
+    <div class="social-links d-none d-md-flex align-items-center">
+      <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= Header ======= -->
+<header id="header" class="d-flex align-items-center">
+  <div class="container d-flex justify-content-between align-items-center">
+
+    <div class="logo">
+      <h1><a href="index.html">Name</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    </div>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a routerLink="/" routerLinkActive="Active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a routerLink="/shop" routerLinkActive="active">Shop</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        
+        <li><a href="contact.html">Contact</a></li>
+        <li [style.padding-left]="'10px'"*ngIf="show==true" ><a href=""><b> Hi {{currentUser}} </b></a></li>
+        <li><button class="add-to-cart btn btn-default" (click)="Logout()" type="button">Logout</button></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->

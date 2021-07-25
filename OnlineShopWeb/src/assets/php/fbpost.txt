@@ -1,0 +1,17 @@
+ //firebase
+//    this.isSubmitted=true;
+//    if(this.form.valid){
+//     console.log("valid form");
+//       var filepath=`${formValue.category}/${this.imageresult.name}_${new Date().getTime()}`;
+// const fileRef=this.fireStorage.ref(filepath);
+//       this.fireStorage.upload(filepath,this.imageresult).snapshotChanges().pipe(
+//         finalize(()=>{
+//           fileRef.getDownloadURL().subscribe((url)=>  {
+//             formValue['imageurl']=url;
+//             this.form.reset();
+//             console.log(url);
+//           })
+//         })
+//       ).subscribe();
+//    }
+    

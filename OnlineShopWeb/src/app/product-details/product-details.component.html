@@ -1,0 +1,127 @@
+<div class="container" >
+<div class="row">
+    <div class="card  col"  *ngFor="let userdata of userdatas">
+    
+                  
+        <div class="container-fliud" >
+            <div class="wrapper row" >
+                <div class="preview col-sm">
+
+                  <ul  ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills">
+                    <li  *ngFor="let url of ImageUrldata" [ngbNavItem]="url.index">
+                      <a ngbNavLink><img style="max-width: 50px;" src="http://localhost/webapp/OnlineShop/OnlineShopWeb/src/assets/{{url}}" /></a>
+                      <ng-template ngbNavContent>
+                        <img style="max-width: 100%;" src="http://localhost/webapp/OnlineShop/OnlineShopWeb/src/assets/{{url}}" />
+                      </ng-template>
+                    </li>
+                  
+                  </ul>
+                  
+                  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                  
+                   <!-- <pre>Active: {{ active }}</pre>  -->
+                    
+                   
+                </div>
+               
+                <div class="details col-sm">
+                    <h3 class="product-title">{{userdata.Name}}</h3>
+                    <div class="rating">
+                        
+                        
+                    </div>
+                    <p class="product-description">{{userdata.Description}}</p>
+                    <h4 class="price">current price: <span>${{userdata.Price}}</span></h4>
+                   
+
+                    
+                        <div *ngIf="ClothSizedata!=null" class="col-sm-7">
+                            <dl class="param param-inline">
+                                  <dt>Cloth Size </dt>
+                                  <dd>
+                                      <label *ngFor="let cs of ClothSizedata" class="form-check form-check-inline">
+                                      <input class="form-check-input" value={{cs}} type="radio"  name="inlineRadioOptions" id="inlineRadio2" >
+                                      <span class="form-check-label">{{cs}}</span>
+                                    </label>
+                              
+                                  </dd>
+                            </dl>  <!-- item-property .// -->
+                        </div> <!-- col.// -->
+
+
+                        
+                          
+
+                          <div  *ngIf="ShoeSizedata!=null" style="padding-top: 10px; padding-bottom: 20px;" >
+                            <label for="ShoeItems"><dt>Shoe Size</dt></label>
+                            <ng-multiselect-dropdown
+                            class="form-group"
+                           name="ShoeSize"
+                           
+                              [placeholder]="'Choose ShoeSize'"
+                              [settings]="ShoeSettings"
+                              [data]="ShoeSizedata"
+                              
+                             
+                           >
+                            </ng-multiselect-dropdown>
+                          
+                            </div>
+                        
+                       
+                    <!-- Product Color -->
+      <div  *ngIf="Colordata!=null" class="product-color">
+        <span>Color</span>
+ 
+        <div class="color-choose">
+          <div *ngFor="let colorP of Colordata">
+            <input   type="radio" id="{{colorP}}" name="color" value="{{colorP}}" >
+            <label style="--color: {{colorP}};" for="{{colorP}}"><span></span></label>
+          </div>
+         
+        </div>
+ 
+      </div>
+
+      <div style="padding-bottom: 10px; margin-right: 70px">
+        <Label>Quantity</Label>
+      <ngx-number-spinner  [min]="1" [max]="5" (change)="change($event)" [value]="1"  ></ngx-number-spinner>
+    </div>
+     
+     
+
+
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <!-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> -->
+                    </div>
+                </div>
+                
+            
+            </div>
+            
+        </div>
+       
+    </div>
+    <div  *ngIf="isMobileResolution==false" class=" col-3" >
+    <div style="padding: 30px;" *ngFor="let userdata of userdatas">
+<h4 style="padding-bottom: 10px;">Summary</h4>
+<hr>
+
+ <p><b>Product  Name  </b><span style="float: right;">{{userdata.Name}}</span></p>
+ <p><b>Quantity  </b><span style="float: right;">{{Svalue}}</span></p>
+  
+  <hr style="margin:10px ;">
+
+  <p *ngIf="Dprice==null" ><b>The total amount of
+    (including VAT) </b><span style="float: right;">{{userdata.Price}} ksh</span></p>
+  <p *ngIf="Dprice!=null"><b>The total amount of
+    (including VAT) </b><span style="float: right;">{{Dprice}} ksh</span></p>
+
+    <div></div>
+    </div>
+                      </div>
+                    </div>
+</div>
+
+<app-related-product></app-related-product>

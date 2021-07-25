@@ -1,0 +1,122 @@
+<div class="card" style=" align-items: center;">
+  <div class="card-body" style="align-content: center;" >
+
+    <h2 class="card-title">Add products</h2>
+
+    <form  #form="ngForm" (ngSubmit)="onSubmit(productModel)"> 
+      {{form.value | json}}
+      <hr/>
+      {{productModel | json}}
+<!-- product Category -->
+      <div class="form-group" style="padding:10px ;">
+        <label for="Category">Category</label>
+        <select [(ngModel)]='productModel.Category' name="Category" #Category="ngModel" class="form-control" id="Category">
+          <option *ngFor="let c of Categorys"value={{c.id}} >{{c.Categorys}}</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="padding:10px;">
+        <label for="Name">Name</label>
+        <input required  maxlength="50" [(ngModel)]='productModel.Name' name="Name"   #Name="ngModel" id="Name" type="text" class="form-control">
+     <div class="alert alert-danger" *ngIf="Name.touched && !Name.valid">
+      <div  *ngIf="Name.errors?.required"> Name is required ! </div>      
+     <div  *ngIf="Name.errors?.maxlength"> Name is to long... </div> 
+    </div>
+      </div>
+
+     <div class="form-group" style="padding:10px ;">
+       <label for="Description">Description</label>
+      <textarea required [(ngModel)]='productModel.Description' name="Description" #Description="ngModel" id="Description" cols="30" rows="10" class="form-control"></textarea>
+    <div class="alert alert-danger" *ngIf="Description.touched && !Description.valid"> Description is required!</div>
+    </div>
+
+    <div class="form-group" style="padding:10px ;">
+      <label for="Price">Price</label>
+      <input  required [(ngModel)]='productModel.Price' name="Price" #Price="ngModel" type="number" id="Price"class="form-control" >
+    <div class="alert alert-danger" *ngIf="Price.touched && !Price.valid"> Price is required!</div>
+    </div>
+
+<hr>
+ <section class="colorbody">
+  <label for="ColorPicker">Colors </label> 
+  <div class="row" >
+    <div class="column" >
+      <input   [style.background]="productModel.colorPicker1" [(colorPicker)]='productModel.colorPicker1' type="text" class="form-control input-lg" [value]="productModel.colorPicker1"/>
+
+    </div>
+    <div class="column" >
+      <input   [style.background]="productModel.colorPicker2" [(colorPicker)]='productModel.colorPicker2' type="text" class="form-control input-lg" [value]="productModel.colorPicker2"/>
+
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="column" >
+      <input   [style.background]="productModel.colorPicker3" [(colorPicker)]='productModel.colorPicker3' type="text" class="form-control input-lg" [value]="productModel.colorPicker3"/>
+
+    </div>
+    <div class="column">
+      <input   [style.background]="productModel.colorPicker4" [(colorPicker)]='productModel.colorPicker4' type="text" class="form-control input-lg" [value]="productModel.colorPicker4"/>
+
+    </div>
+  </div>
+</section>
+ 
+<hr>
+<div  *ngIf="Category.value==1" style="padding: 10px;">
+<label for="imageupload">Shoe Size</label>
+<ng-multiselect-dropdown
+class="form-group"
+name="shoeSize"
+
+  [placeholder]="'custom placeholder'"
+  [settings]="dropdownSettings"
+  [data]="dropdownList"
+  [(ngModel)]="productModel.shoeSize"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+ 
+>
+</ng-multiselect-dropdown>
+</div>
+
+<div  *ngIf="Category.value==2" style="padding: 10px;">
+  <label for="clothItems">Cloth Size</label>
+  <ng-multiselect-dropdown
+  class="form-group"
+ name="clothSize"
+ 
+    [placeholder]="'custom placeholder'"
+    [settings]="clothSettings"
+    [data]="ClothSize"
+    
+    [(ngModel)]="productModel.clothSize"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+    
+    >
+  </ng-multiselect-dropdown>
+
+  </div>
+    <div style="padding:10px ;" class="form-group" >
+      <label for="imageupload">Add images</label>
+<br>
+      <input 
+      name="imageUrl" 
+    
+      type="file"
+      formContralName="imageUrl"
+       accept="image/*"
+      class="form-contol" (change)="upload($event)" multiple>
+      <br>
+      <img *ngFor='let url of urls'  [src]="url" height="100" style="padding: 5px;">
+
+    </div>
+<div style="padding:10px ;">
+      <button class="btn btn-primary">Submit</button>
+
+    </div>
+    </form>
+  </div>
+ 
+</div>
